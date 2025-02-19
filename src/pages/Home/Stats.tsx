@@ -1,5 +1,6 @@
 import { Flex, HStack, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import { Globe, Package, Truck2, UserStars } from "@trucking/assets/icons";
+import Counter from "@trucking/utils/Counter";
 
 const stats = [
   {
@@ -54,16 +55,7 @@ const Stats = () => {
           <HStack key={index} gap={4}>
             <stat.icon boxSize={"46px"} color={"white"} />
             <Stack color={"white"} gap={0}>
-              <Text
-                fontSize={{
-                  base: "24px",
-                  sm: "28px",
-                  md: "28px",
-                  xl: "35px",
-                }}
-              >
-                {stat.value}
-              </Text>
+              <Counter value={parseInt(stat.value)} />
               <Text
                 fontSize={{
                   base: "16px",

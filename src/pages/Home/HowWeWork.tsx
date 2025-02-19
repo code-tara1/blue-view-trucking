@@ -1,4 +1,5 @@
 import {
+  Box,
   Circle,
   Flex,
   Float,
@@ -16,6 +17,7 @@ import {
 } from "@trucking/assets/icons";
 import { Button } from "@trucking/components/ui/button";
 import React from "react";
+import { useInView } from "react-intersection-observer";
 
 const howWeWork = [
   {
@@ -39,11 +41,12 @@ const howWeWork = [
 ];
 
 const HowWeWork = () => {
+  const { ref, inView } = useInView({ threshold: 0.8, triggerOnce: true });
+
   return (
     <Flex py={"80px"} px={"10px"}>
       <Flex
         flexDir={"column"}
-        gap={6}
         w={"1440px"}
         maxW={{
           base: "95vw",
@@ -52,21 +55,31 @@ const HowWeWork = () => {
         }}
         justify={"center"}
         align={"center"}
+        gap={6}
         mx={"auto"}
       >
-        <HStack>
-          <Text textStyle={"caption"} color={"#00C0FF"}>
-            OUR PROCESS
+        <Stack
+          justify={"center"}
+          align={"center"}
+          gap={6}
+          opacity={inView ? 1 : 0}
+          transform={inView ? "translateY(0)" : "translateY(-50px)"}
+          transition={"all 0.7s ease-in-out"}
+        >
+          <HStack>
+            <Text textStyle={"caption"} color={"#00C0FF"}>
+              OUR PROCESS
+            </Text>
+            <Truck boxSize={"46px"} />
+          </HStack>
+          <Text maxW={"382px"} textStyle={"heading"} color={"#141414"}>
+            How We Work
           </Text>
-          <Truck boxSize={"46px"} />
-        </HStack>
-        <Text maxW={"382px"} textStyle={"heading"} color={"#141414"}>
-          How We Work
-        </Text>
-        <Text textAlign={"center"} textStyle={"body"}>
-          Our process is simple, yet through.
-        </Text>
-
+          <Text textAlign={"center"} textStyle={"body"}>
+            Our process is simple, yet through.
+          </Text>
+        </Stack>
+        <Box w={0} h={0} ref={ref} />
         <SimpleGrid
           columns={{
             base: 1,
@@ -79,6 +92,9 @@ const HowWeWork = () => {
           alignItems={"start"}
           justifyItems={"center"}
           w={"full"}
+          opacity={inView ? 1 : 0}
+          transform={inView ? "scale(1)" : "scale(0)"}
+          transition={"all 0.7s ease-in-out"}
         >
           {howWeWork.map((item, index) => (
             <React.Fragment key={index}>

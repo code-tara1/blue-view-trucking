@@ -13,6 +13,7 @@ import { imageAssets } from "@trucking/assets/images";
 import { TextInput } from "@trucking/components/Form/Input";
 import { Button } from "@trucking/components/ui/button";
 import { useForm } from "react-hook-form";
+import { useInView } from "react-intersection-observer";
 
 const inputs = [
   {
@@ -56,6 +57,7 @@ const Contact = () => {
     message: "",
   };
 
+  const { ref, inView } = useInView({ triggerOnce: true });
   const { control } = useForm({ defaultValues });
 
   return (
@@ -74,12 +76,23 @@ const Contact = () => {
         flexDir={"column"}
         gap={4}
       >
-        <SimpleGrid columns={{ base: 1, md: 2 }} gap={4} w={"full"} mt={10}>
+        <SimpleGrid
+          ref={ref}
+          columns={{ base: 1, md: 2 }}
+          gap={4}
+          w={"full"}
+          mt={10}
+        >
           <Stack
             mx={{ md: "auto" }}
             maxW={"452px"}
             pos={"relative"}
-            transform={{ base: "translateY(-30%)", md: "translateY(-50%)" }}
+            transform={{
+              base: inView ? "translate(0, -30%)" : "translate(-20%, -30%)",
+              md: inView ? "translate(0, -50%)" : "translate(-20%, -50%)",
+            }}
+            opacity={inView ? 1 : 0}
+            transition={"all 0.7s ease-in-out"}
           >
             <Image src={imageAssets.Truck1} w={"70%"} />
             <HStack mt={10}>
@@ -105,9 +118,14 @@ const Contact = () => {
             </Button>
           </Stack>
           <Card.Root
+            opacity={inView ? 1 : 0}
+            transform={{
+              base: inView ? "translate(0,-20%)" : "translate(30%, -20%)",
+              md: inView ? "translate(0,0)" : "translate(30%, 0)",
+            }}
+            transition={"all 0.7s ease-in-out"}
             maxW={"620px"}
             w={"full"}
-            transform={{ base: "translateY(-20%)", md: "translateY(0%)" }}
             h={"max-content"}
           >
             <Card.Body

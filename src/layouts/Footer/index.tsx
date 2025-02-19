@@ -13,9 +13,12 @@ import {
 import { Envelope2 } from "@trucking/assets/icons";
 import { Phone2 } from "@trucking/assets/icons/phone-2";
 import { imageAssets } from "@trucking/assets/images";
+import { useInView } from "react-intersection-observer";
 import { contactData } from "../data";
 
 const Footer = () => {
+  const { ref, inView } = useInView({ triggerOnce: true });
+
   return (
     <Flex bg={"#151515"} w={"full"} flexDir={"column"} pt={"50px"} pb={"20px"}>
       {/* Blue View Trucking */}
@@ -31,7 +34,13 @@ const Footer = () => {
         mx={"auto"}
         gap={10}
       >
-        <GridItem colSpan={{ base: 4, md: 2, xl: 3 }}>
+        <GridItem
+          ref={ref}
+          opacity={inView ? 1 : 0}
+          transform={inView ? "translateX(0)" : "translateX(-50px)"}
+          transition={"all 0.7s ease-in-out"}
+          colSpan={{ base: 4, md: 2, xl: 3 }}
+        >
           <Stack gap={4}>
             <Text
               fontSize={{
@@ -125,7 +134,12 @@ const Footer = () => {
 
         {/* Contact Us */}
 
-        <GridItem colSpan={{ base: 4, md: 1, xl: 1 }}>
+        <GridItem
+          opacity={inView ? 1 : 0}
+          transform={inView ? "translateX(0)" : "translateX(50px)"}
+          transition={"all 0.7s ease-in-out"}
+          colSpan={{ base: 4, md: 1, xl: 1 }}
+        >
           <Stack gap={4}>
             <Text
               fontSize={{
@@ -210,6 +224,9 @@ const Footer = () => {
         lineHeight={"25px"}
         color={"white"}
         textAlign={"center"}
+        opacity={inView ? 1 : 0}
+        transform={inView ? "translateY(0)" : "translateY(-10px)"}
+        transition={"all 0.7s ease-in-out"}
       >
         Copyright © 2025 - Blue Veiw Trucking. All Rights Reserved. Designed
         By:&nbsp;

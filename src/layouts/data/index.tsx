@@ -59,17 +59,17 @@ export const navLinks = [
 export const serviceData = [
   {
     label: "Hot Shot Trucking",
-    icon: Truck3,
+    icon: <Truck3 />,
     image: imageAssets.Service1,
   },
   {
     label: "Full Truck Load",
-    icon: Truck3,
+    icon: <Truck3 />,
     image: imageAssets.Service2,
   },
   {
     label: "Logistics",
-    icon: Truck3,
+    icon: <Truck3 />,
     image: imageAssets.Service3,
   },
 ];

@@ -1,12 +1,17 @@
-import { Box, Card, Flex, HStack, Link, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, HStack, Stack, Text } from "@chakra-ui/react";
 import { Truck } from "@trucking/assets/icons";
 import { imageAssets } from "@trucking/assets/images";
-import LazyLoadImage from "@trucking/components/Image/LazyLoadImage";
+import ServiceCard from "@trucking/components/Cards/ServiceCard";
 import { Button } from "@trucking/components/ui/button";
 import { serviceData } from "@trucking/layouts/data";
+import { NAVIGATION_ROUTES } from "@trucking/routes/navigationRoutes";
+import { useInView } from "react-intersection-observer";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const Services = () => {
+  const { ref, inView } = useInView({ triggerOnce: true });
+
   return (
     <Flex
       py={"80px"}
@@ -26,34 +31,52 @@ const Services = () => {
         mx={"auto"}
         flexDir={"column"}
         gap={4}
+        ref={ref}
       >
-        <HStack>
-          <Text textStyle={"caption"} color={"#00C0FF"}>
-            OUR SERVICES
-          </Text>
-          <Truck boxSize={"46px"} />
-        </HStack>
-        <Text
-          textAlign={"center"}
-          textStyle={"heading"}
-          maxW={"405px"}
-          color={"#141414"}
+        <Stack
+          gap={4}
+          opacity={inView ? 1 : 0}
+          transform={inView ? "translateY(0)" : "translateY(-50px)"}
+          transition={"all 0.7s ease-in-out"}
+          mx={"auto"}
+          justify={"center"}
+          align={"center"}
         >
-          Services We're Offering
-        </Text>
-        <Text
-          textStyle={"body"}
-          color={"#141414"}
-          textAlign={"center"}
-          maxW={"1140px"}
+          <HStack>
+            <Text textStyle={"caption"} color={"#00C0FF"}>
+              OUR SERVICES
+            </Text>
+            <Truck boxSize={"46px"} />
+          </HStack>
+          <Text
+            textAlign={"center"}
+            textStyle={"heading"}
+            maxW={"405px"}
+            color={"#141414"}
+          >
+            Services We're Offering
+          </Text>
+          <Text
+            textStyle={"body"}
+            color={"#141414"}
+            textAlign={"center"}
+            maxW={"1140px"}
+            mt={5}
+          >
+            We facilitate success for our clients by providing and executing
+            world class logistical solutions. We offer package delivery, hotshot
+            delivery and more. We also offer personal loans services. For more
+            information check our services page or call us directly.
+          </Text>
+        </Stack>
+        <Box
+          opacity={inView ? 1 : 0}
+          transform={inView ? "translateY(0)" : "translateY(50px)"}
+          transition={"all 0.7s ease-in-out"}
+          w={"full"}
+          maxW={"calc(350px * 3)"}
           mt={5}
         >
-          We facilitate success for our clients by providing and executing world
-          class logistical solutions. We offer package delivery, hotshot
-          delivery and more. We also offer personal loans services. For more
-          information check our services page or call us directly.
-        </Text>
-        <Box w={"full"} maxW={"calc(350px * 3)"} mt={5}>
           <Swiper
             slidesPerView={3}
             spaceBetween={10}
@@ -77,73 +100,19 @@ const Services = () => {
             {[...serviceData, ...serviceData, ...serviceData].map(
               (service, index) => (
                 <SwiperSlide key={index}>
-                  <Card.Root
-                    border={0}
-                    className="group"
+                  <ServiceCard
+                    service={service}
+                    readMore
                     maxW={"294px"}
-                    w={"full"}
                     mx={"auto"}
-                  >
-                    <Card.Header p={4} pos={"relative"}>
-                      <LazyLoadImage
-                        src={service.image}
-                        alt={service.label}
-                        h={"full"}
-                        aspectRatio={3 / 2}
-                      />
-                      <Flex
-                        align={"center"}
-                        justify={"center"}
-                        w={"70px"}
-                        aspectRatio={1}
-                        outline={"10px solid"}
-                        outlineColor={"white/70"}
-                        pos={"absolute"}
-                        _groupHover={{
-                          bg: "#00C0FF",
-                        }}
-                        bottom={-2}
-                        bg={"black"}
-                        rounded={"full"}
-                        left={"50%"}
-                        transform={"translateX(-50%)"}
-                      >
-                        <service.icon boxSize={"40px"} color={"white"} />
-                      </Flex>
-                    </Card.Header>
-                    <Card.Body p={4} pb={10}>
-                      <Stack align={"center"} mt={4}>
-                        <Text
-                          fontSize={{
-                            base: "18px",
-                            md: "20px",
-                            xl: "22px",
-                          }}
-                          lineHeight={"30px"}
-                          fontFamily={"Viga"}
-                        >
-                          {service.label}
-                        </Text>
-                        <Link
-                          href={"#services"}
-                          _groupHover={{
-                            color: "#00C0FF",
-                          }}
-                          fontSize={{ base: "14px", md: "16px" }}
-                          fontWeight={700}
-                        >
-                          Read More
-                        </Link>
-                      </Stack>
-                    </Card.Body>
-                  </Card.Root>
+                  />
                 </SwiperSlide>
               )
             )}
           </Swiper>
         </Box>
-        <Button mt={10} w={"232px"} variant={"primary"}>
-          View All Services
+        <Button asChild mt={10} w={"232px"} variant={"primary"}>
+          <Link to={NAVIGATION_ROUTES.SERVICES}>View All Services</Link>
         </Button>
       </Flex>
     </Flex>

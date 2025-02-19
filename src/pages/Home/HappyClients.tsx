@@ -9,8 +9,11 @@ import {
 } from "@chakra-ui/react";
 import { Truck } from "@trucking/assets/icons";
 import { imageAssets } from "@trucking/assets/images";
+import { useInView } from "react-intersection-observer";
 
 const HappyClients = () => {
+  const { ref, inView } = useInView({ threshold: 0.5, triggerOnce: true });
+
   return (
     <Flex
       w={"full"}
@@ -30,6 +33,10 @@ const HappyClients = () => {
         columns={{ base: 1, md: 2 }}
         gap={6}
         mx={"auto"}
+        ref={ref}
+        opacity={inView ? 1 : 0}
+        transform={inView ? "translateY(0)" : "translateY(-50px)"}
+        transition={"all 0.7s ease-in-out"}
       >
         <GridItem colSpan={1} mt={4}>
           <Image src={imageAssets.Truck2} />

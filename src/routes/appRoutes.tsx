@@ -19,6 +19,14 @@ const appRoutes = [
         path: NAVIGATION_ROUTES.SERVICES,
         element: NAVIGATION_PAGES.SERVICES,
       },
+      {
+        path: NAVIGATION_ROUTES.REVIEWS,
+        element: NAVIGATION_PAGES.REVIEWS,
+      },
+      {
+        path: NAVIGATION_ROUTES.CONTACT,
+        element: NAVIGATION_PAGES.CONTACT,
+      },
     ],
   },
 ];
