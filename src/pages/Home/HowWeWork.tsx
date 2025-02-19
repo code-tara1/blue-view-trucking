@@ -14,6 +14,8 @@ import {
   Service3,
   Truck,
 } from "@trucking/assets/icons";
+import { Button } from "@trucking/components/ui/button";
+import React from "react";
 
 const howWeWork = [
   {
@@ -79,7 +81,7 @@ const HowWeWork = () => {
           w={"full"}
         >
           {howWeWork.map((item, index) => (
-            <>
+            <React.Fragment key={index}>
               <Stack
                 key={index}
                 align={"center"}
@@ -133,9 +135,12 @@ const HowWeWork = () => {
                   sm: "rotate(0deg)",
                 }}
               />
-            </>
+            </React.Fragment>
           ))}
         </SimpleGrid>
+        <Button mt={10} w={{ base: "200px", sm: "225px" }} variant={"primary"}>
+          Book Us Now
+        </Button>
       </Flex>
     </Flex>
   );

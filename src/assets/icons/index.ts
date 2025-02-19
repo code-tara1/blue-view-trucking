@@ -2,6 +2,7 @@ import { BoxVan } from "./box-van";
 import { Clock } from "./clock";
 import { DashedArrow } from "./dashed-arrow";
 import { Envelope } from "./envelope";
+import { Envelope2 } from "./envelope-2";
 import { Globe } from "./globe";
 import { MapPin } from "./map-pin";
 import { Package } from "./package";
@@ -18,6 +19,7 @@ export {
   Clock,
   DashedArrow,
   Envelope,
+  Envelope2,
   Globe,
   MapPin,
   Package,
