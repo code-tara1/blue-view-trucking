@@ -1,6 +1,7 @@
 import { Box, Card, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import { imageAssets } from "@trucking/assets/images";
 import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import BannerNavigation from "./BannerNavigation";
 
 const bannerImages = [
@@ -11,7 +12,7 @@ const bannerImages = [
 
 const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const { inView, ref } = useInView({ threshold: 0.5, triggerOnce: true });
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
@@ -73,7 +74,12 @@ const Hero = () => {
           </Box>
         </Box>
 
+        {/* Text Container */}
         <Box
+          ref={ref}
+          transform={inView ? "translateX(0)" : "translateX(-100px)"}
+          opacity={inView ? 1 : 0}
+          transition={"all 0.5s ease-in-out"}
           maxW={{
             base: "95dvw",
             sm: "90vw",
@@ -122,6 +128,7 @@ const Hero = () => {
             </Card.Body>
           </Card.Root>
         </Box>
+        {/* Text Container */}
       </Flex>
       {/* Navigation Buttons */}
       <BannerNavigation

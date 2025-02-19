@@ -15,6 +15,10 @@ const appRoutes = [
         path: NAVIGATION_ROUTES.ABOUT,
         element: NAVIGATION_PAGES.ABOUT,
       },
+      {
+        path: NAVIGATION_ROUTES.SERVICES,
+        element: NAVIGATION_PAGES.SERVICES,
+      },
     ],
   },
 ];

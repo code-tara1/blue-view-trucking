@@ -9,8 +9,11 @@ import {
 import { Truck } from "@trucking/assets/icons";
 import { imageAssets } from "@trucking/assets/images";
 import LazyLoadImage from "@trucking/components/Image/LazyLoadImage";
+import { useInView } from "react-intersection-observer";
 
 const AboutUs = () => {
+  const { inView, ref } = useInView({ threshold: 0.5, triggerOnce: true });
+
   return (
     <Flex pb={"50px"} px={"10px"}>
       <SimpleGrid
@@ -20,11 +23,18 @@ const AboutUs = () => {
           sm: "90vw",
           lg: "80vw",
         }}
+        ref={ref}
         columns={{ base: 1, lg: 2 }}
         mx={"auto"}
         gap={4}
       >
-        <GridItem colSpan={1} maxW={"650px"}>
+        <GridItem
+          transform={inView ? "translateY(0)" : "translateY(50px)"}
+          opacity={inView ? 1 : 0}
+          transition={"all 1s ease-in-out"}
+          colSpan={1}
+          maxW={"650px"}
+        >
           <Stack gap={4}>
             <HStack>
               <Text textStyle={"caption"} color={"#00C0FF"}>
@@ -47,7 +57,12 @@ const AboutUs = () => {
             </Text>
           </Stack>
         </GridItem>
-        <GridItem colSpan={1}>
+        <GridItem
+          transform={inView ? "scale(1)" : "scale(0)"}
+          opacity={inView ? 1 : 0}
+          transition={"all 1s ease-in-out"}
+          colSpan={1}
+        >
           <Flex
             border={"3px solid"}
             borderColor={"primary.500"}

@@ -11,7 +11,7 @@ const Navbar = () => {
       {pathname !== "/" ? (
         <>
           <TopNav color={"gray.900"} boxShadow={"md"} />
-          <BottomNav color={"gray.900"} />
+          <BottomNav boxShadow={"sm"} color={"gray.900"} />
         </>
       ) : (
         <Box zIndex={2} pos={"absolute"} top={0} left={0} w={"full"}>
