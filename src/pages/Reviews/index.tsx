@@ -88,13 +88,7 @@ const Reviews = () => {
   return (
     <Flex flexDir={"column"} minH={"60dvh"}>
       <PageHeader title={"Reviews"} />
-      <Flex
-        ref={ref}
-        transform={inView ? "translateY(0)" : "translateY(50px)"}
-        transition={"transform 0.7s ease-in-out"}
-        mx={"auto"}
-        py={10}
-      >
+      <Flex ref={ref} mx={"auto"} py={10}>
         <SimpleGrid
           w={"1440px"}
           maxW={{
@@ -104,9 +98,15 @@ const Reviews = () => {
           }}
           mx={"auto"}
           columns={{ base: 1, md: 2, xl: 3 }}
-          gap={10}
+          gap={{ base: 8, md: 6, xl: 10 }}
         >
-          <GridItem colSpan={{ base: 3, md: 1, xl: 1 }}>
+          {/* Leave a Review */}
+          <GridItem
+            opacity={inView ? 1 : 0}
+            transform={inView ? "translateX(0)" : "translateX(-50px)"}
+            transition={"transform 0.7s ease-in-out"}
+            colSpan={{ base: 3, md: 1, xl: 1 }}
+          >
             <Flex flexDir={"column"}>
               <Header title={"Leave a Review"} />
               <Flex flexDir={"column"} gap={4} p={5} bg={"gray.50"} asChild>
@@ -137,10 +137,21 @@ const Reviews = () => {
               </Flex>
             </Flex>
           </GridItem>
-          <GridItem colSpan={{ base: 3, md: 1, xl: 2 }}>
+          {/* Leave a Review */}
+
+          {/* Reviews  */}
+          <GridItem
+            opacity={inView ? 1 : 0}
+            transform={inView ? "translateX(0)" : "translateX(50px)"}
+            transition={"transform 0.7s ease-in-out"}
+            colSpan={{ base: 3, md: 1, xl: 2 }}
+          >
             <Flex flexDir={"column"} gap={4}>
               <Header title={"What our clients say"} />
-              <For each={testimonialData}>
+              <For
+                each={testimonialData}
+                fallback={<Text>No reviews found.</Text>}
+              >
                 {(item, index) => (
                   <AccordionRoot
                     gap={4}
@@ -193,6 +204,7 @@ const Reviews = () => {
               </For>
             </Flex>
           </GridItem>
+          {/* Reviews  */}
         </SimpleGrid>
       </Flex>
     </Flex>

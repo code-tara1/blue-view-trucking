@@ -10,7 +10,7 @@ const PageHeader: FC<PageHeaderProps> = ({ title }) => {
   const { inView, ref } = useInView({ threshold: 0.5, triggerOnce: true });
 
   return (
-    <Flex bg={"gray.600"} h={"200px"}>
+    <Flex bg={"gray.800"} h={"200px"}>
       <Stack
         ref={ref}
         transform={inView ? "scale(1)" : "scale(0)"}
