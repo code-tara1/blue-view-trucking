@@ -1,1 +1,0 @@
-import{Q as t}from"./index-CPT6i_kY.js";const{withProvider:e,withContext:o}=t({key:"card"}),d=e("div","root"),a=o("div","body"),i=o("div","header");o("div","footer");o("h3","title");o("p","description");export{d as C,a,i as b};
