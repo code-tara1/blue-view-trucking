@@ -73,3 +73,34 @@ export const serviceData = [
     image: imageAssets.Service3,
   },
 ];
+
+export const testimonialData = [
+  {
+    name: "Mark R.",
+    position: "Logistics Manager",
+    rating: 5,
+    review:
+      "Blue View Trucking has been our go-to carrier for oversized shipments. Their team is knowledgeable, and they always provide competitive rates with excellent customer service. We've never had to worry about delays or last-minute issues—highly recommended!",
+  },
+  {
+    name: "Susan T.",
+    position: "Construction Supply Manager",
+    rating: 5,
+    review:
+      "We had a complex shipment that required extra attention due to its size, and Blue View Trucking handled it flawlessly. Their expertise in managing wide and overweight loads made the process smooth and hassle-free. We will definitely use them again!",
+  },
+  {
+    name: "David L.",
+    position: "Manufacturing Operations",
+    rating: 5,
+    review:
+      "The team at Blue View Trucking made the entire process stress-free. They provided us with a great rate, kept us updated at every step, and delivered our shipment on time. Their customer service truly sets them apart.",
+  },
+  {
+    name: "Lisa M.",
+    position: "Supply Chain Coordinator",
+    rating: 5,
+    review:
+      "We've used Blue View Trucking multiple times, and they have never let us down. Whether it's an overlength or overweight load, they handle it professionally and efficiently. They are the first company we call when we need reliable transportation.",
+  },
+];

@@ -2,6 +2,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { BrowserRouter } from "react-router-dom";
 import "swiper/swiper-bundle.css";
 import { Provider } from "./components/ui/provider";
+import { Toaster } from "./components/ui/toaster";
 import { globalStyles } from "./theme/global";
 const ErrorFallback = () => {
   return (
@@ -46,7 +47,10 @@ const Providers = ({ children }: IProviders) => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <BrowserRouter>
-        <Provider>{children}</Provider>
+        <Provider>
+          <Toaster />
+          {children}
+        </Provider>
         {globalStyles()}
       </BrowserRouter>
     </ErrorBoundary>

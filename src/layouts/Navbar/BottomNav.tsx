@@ -34,7 +34,6 @@ const BottomNav: FC<StackProps> = ({ ...rest }) => {
               fontWeight={600}
               color={rest.color ?? "white"}
               key={index}
-              pb={"15px"}
               borderBottom={"3px solid transparent"}
               _hover={{
                 borderBottomColor: "primary.500",

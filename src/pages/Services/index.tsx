@@ -26,7 +26,7 @@ const Services = () => {
               }}
               service={service}
               key={index}
-              border={"1px solid #E5E5E5"}
+              border={"2px solid transparent"}
               boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
               maxW={"294px"}
               mx={"auto"}

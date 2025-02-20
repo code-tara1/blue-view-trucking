@@ -7,7 +7,7 @@ interface PageHeaderProps {
 }
 
 const PageHeader: FC<PageHeaderProps> = ({ title }) => {
-  const { inView, ref } = useInView({ threshold: 0.5 });
+  const { inView, ref } = useInView({ threshold: 0.5, triggerOnce: true });
 
   return (
     <Flex bg={"gray.600"} h={"200px"}>

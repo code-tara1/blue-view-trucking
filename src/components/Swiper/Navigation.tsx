@@ -1,6 +1,6 @@
 import { HStack, Icon, IconButton, IconButtonProps } from "@chakra-ui/react";
 import { FC } from "react";
-import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { useSwiper } from "swiper/react";
 
 const Navigation: FC<IconButtonProps> = ({ ...rest }) => {
@@ -19,7 +19,7 @@ const Navigation: FC<IconButtonProps> = ({ ...rest }) => {
         {...rest}
       >
         <Icon asChild boxSize={{ base: 4, md: 6 }}>
-          <LuArrowLeft fontWeight={"bold"} />
+          <LuChevronLeft fontWeight={"bold"} />
         </Icon>
       </IconButton>
       <IconButton
@@ -34,7 +34,7 @@ const Navigation: FC<IconButtonProps> = ({ ...rest }) => {
         {...rest}
       >
         <Icon asChild boxSize={{ base: 4, md: 6 }}>
-          <LuArrowRight fontWeight="bold" />
+          <LuChevronRight fontWeight="bold" />
         </Icon>
       </IconButton>
     </HStack>

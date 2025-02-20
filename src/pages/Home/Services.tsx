@@ -2,6 +2,7 @@ import { Box, Flex, HStack, Stack, Text } from "@chakra-ui/react";
 import { Truck } from "@trucking/assets/icons";
 import { imageAssets } from "@trucking/assets/images";
 import ServiceCard from "@trucking/components/Cards/ServiceCard";
+import { SwiperNavigation } from "@trucking/components/Swiper";
 import { Button } from "@trucking/components/ui/button";
 import { serviceData } from "@trucking/layouts/data";
 import { NAVIGATION_ROUTES } from "@trucking/routes/navigationRoutes";
@@ -109,6 +110,7 @@ const Services = () => {
                 </SwiperSlide>
               )
             )}
+            <SwiperNavigation />
           </Swiper>
         </Box>
         <Button asChild mt={10} w={"232px"} variant={"primary"}>
