@@ -23,9 +23,16 @@ const Contact = () => {
   return (
     <Flex flexDir={"column"} minH={"60dvh"}>
       <PageHeader title={"Contact"} />
-      <Flex mx={"auto"} p={10}>
+      <Flex
+        flexDir={"column"}
+        w={"full"}
+        maxW={"1440px"}
+        gap={6}
+        mx={"auto"}
+        p={10}
+      >
         <SimpleGrid
-          w={"1440px"}
+          w={"full"}
           maxW={{ base: "95vw", sm: "90vw", lg: "80vw" }}
           columns={width < 930 ? 1 : 2}
           gap={4}
@@ -145,6 +152,41 @@ const Contact = () => {
           </GridItem>
           {/* Contact Form */}
         </SimpleGrid>
+
+        <Text
+          color={"primary.500"}
+          borderBottom={"2px solid"}
+          borderBottomColor={"primary.500"}
+          pb={2}
+          textStyle={"caption"}
+          w={"max-content"}
+        >
+          Location
+        </Text>
+        <Flex
+          border={"2px solid"}
+          borderColor={"gray.400"}
+          borderRadius={5}
+          overflow={"hidden"}
+          w={"full"}
+          maxW={{ base: "95vw", sm: "90vw", lg: "80vw" }}
+          h={{
+            base: "300px",
+            sm: "400px",
+            md: "500px",
+            lg: "600px",
+            xl: "700px",
+          }}
+        >
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d85853.78956660874!2d-117.3799879717643!3d47.7439949599635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5361e1c3b80b82b1%3A0x927c497f0e90ef33!2sSpokane%2C%20WA%2099217%2C%20USA!5e0!3m2!1sen!2snp!4v1740053258333!5m2!1sen!2snp"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </Flex>
       </Flex>
     </Flex>
   );

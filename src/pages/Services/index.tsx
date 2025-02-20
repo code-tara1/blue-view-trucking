@@ -15,8 +15,16 @@ const Services = () => {
         transition={"transform 0.7s ease-in-out"}
         mx={"auto"}
         py={10}
+        maxW={{
+          base: "90vw",
+          lg: "80vw",
+        }}
       >
-        <SimpleGrid columns={3} gap={10}>
+        <SimpleGrid
+          columns={{ base: 1, sm: 2, md: 3 }}
+          gapX={{ base: 4, md: 6, xl: 10 }}
+          gapY={10}
+        >
           {serviceData.map((service, index) => (
             <ServiceCard
               _hover={{

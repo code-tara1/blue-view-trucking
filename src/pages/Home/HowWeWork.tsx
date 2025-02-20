@@ -15,9 +15,9 @@ import {
   Service3,
   Truck,
 } from "@trucking/assets/icons";
-import { Button } from "@trucking/components/ui/button";
 import React from "react";
 import { useInView } from "react-intersection-observer";
+import BookUsNowForm from "./BookUsNowForm";
 
 const howWeWork = [
   {
@@ -44,12 +44,12 @@ const HowWeWork = () => {
   const { ref, inView } = useInView({ threshold: 0.8, triggerOnce: true });
 
   return (
-    <Flex py={"80px"} px={"10px"}>
+    <Flex py={"80px"} px={"10px"} maxW={"1440px"} mx={"auto"} w={"full"}>
       <Flex
         flexDir={"column"}
-        w={"1440px"}
+        w={"full"}
         maxW={{
-          base: "95vw",
+          base: "100vw",
           md: "90vw",
           lg: "80vw",
         }}
@@ -154,9 +154,7 @@ const HowWeWork = () => {
             </React.Fragment>
           ))}
         </SimpleGrid>
-        <Button mt={10} w={{ base: "200px", sm: "225px" }} variant={"primary"}>
-          Book Us Now
-        </Button>
+        <BookUsNowForm />
       </Flex>
     </Flex>
   );

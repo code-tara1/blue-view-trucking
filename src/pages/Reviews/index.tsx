@@ -38,19 +38,22 @@ const inputs = [
     label: "Name *",
     name: "name",
     type: "text",
+    required: true,
   },
   {
     label: "Email *",
     name: "email",
     type: "email",
+    required: true,
   },
   {
     label: "Phone *",
     name: "phone",
     type: "tel",
+    required: true,
   },
   {
-    label: "Address *",
+    label: "Address",
     name: "address",
     type: "text",
   },
@@ -58,6 +61,7 @@ const inputs = [
     label: "Message *",
     name: "message",
     type: "textarea",
+    required: true,
   },
 ];
 
@@ -88,11 +92,18 @@ const Reviews = () => {
   return (
     <Flex flexDir={"column"} minH={"60dvh"}>
       <PageHeader title={"Reviews"} />
-      <Flex ref={ref} mx={"auto"} py={10}>
+      <Flex
+        w={"full"}
+        maxW={"1440px"}
+        ref={ref}
+        mx={"auto"}
+        px={"10px"}
+        py={10}
+      >
         <SimpleGrid
-          w={"1440px"}
+          w={"full"}
           maxW={{
-            base: "95dvw",
+            base: "100vw",
             sm: "90vw",
             lg: "80vw",
           }}
@@ -119,6 +130,8 @@ const Reviews = () => {
                         name={input.name}
                         placeholder={input.label}
                         control={control}
+                        required={input.required}
+                        bg={"white"}
                       />
                     ) : (
                       <TextInput
@@ -127,6 +140,8 @@ const Reviews = () => {
                         name={input.name}
                         control={control}
                         placeholder={input.label}
+                        required={input.required}
+                        bg={"white"}
                       />
                     )
                   )}

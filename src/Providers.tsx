@@ -4,6 +4,7 @@ import "swiper/swiper-bundle.css";
 import { Provider } from "./components/ui/provider";
 import { Toaster } from "./components/ui/toaster";
 import { globalStyles } from "./theme/global";
+import ScrollToTop from "./utils/ScrollToTop";
 const ErrorFallback = () => {
   return (
     <div
@@ -49,6 +50,7 @@ const Providers = ({ children }: IProviders) => {
       <BrowserRouter>
         <Provider>
           <Toaster />
+          <ScrollToTop />
           {children}
         </Provider>
         {globalStyles()}

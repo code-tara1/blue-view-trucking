@@ -1,8 +1,8 @@
-import { HStack, Icon, IconButton, StackProps, Text } from "@chakra-ui/react";
+import { HStack, StackProps, Text } from "@chakra-ui/react";
 import { FC } from "react";
-import { LuMenu } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 import { navLinks } from "../data";
+import MobileNav from "./MobileNav";
 
 const BottomNav: FC<StackProps> = ({ ...rest }) => {
   return (
@@ -19,11 +19,7 @@ const BottomNav: FC<StackProps> = ({ ...rest }) => {
         align={"center"}
         justify={"end"}
       >
-        <IconButton variant={"surface"} hideFrom={"md"}>
-          <Icon boxSize={"30px"} asChild>
-            <LuMenu />
-          </Icon>
-        </IconButton>
+        <MobileNav />
         <HStack gap={"50px"} hideBelow={"md"}>
           {navLinks.map((item, index) => (
             <Text

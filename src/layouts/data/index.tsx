@@ -27,7 +27,7 @@ export const contactData = [
   {
     label: "Address",
     id: "address",
-    value: "1234 Street Name, City Name",
+    value: "Spokane, WA 99217-9590",
     icon: MapPin,
     link: "",
   },

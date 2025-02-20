@@ -102,19 +102,19 @@ const TextInput: FC<ITextInputProps & InputProps & TextareaProps> = ({
               ) : (
                 <Input
                   autoComplete="off"
-                  colorPalette={"primary"}
                   value={value}
                   type={type}
                   onChange={onChange}
+                  colorPalette={"primary"}
                   borderColor={
                     !!error || !!backendError?.length ? "red.500" : "#A6A6A6"
                   }
                   focusRing={"inside"}
+                  borderRadius={"4px"}
                   onWheel={(e) => {
                     const target = e.target as HTMLInputElement;
                     type == "number" && target.blur();
                   }}
-                  borderRadius={"4px"}
                   {...rest}
                 />
               )}
