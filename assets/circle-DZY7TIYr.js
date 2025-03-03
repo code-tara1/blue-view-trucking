@@ -1,1 +1,0 @@
-import{r as n,j as o,B as c}from"./index-Dg_drTr3.js";const a=n.forwardRef(function(e,r){const{size:s,...t}=e;return o.jsx(c,{...t,ref:r,boxSize:s,css:{display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,flexGrow:0,...e.css}})}),f=n.forwardRef(function(e,r){const{size:s,...t}=e;return o.jsx(a,{size:s,ref:r,borderRadius:"9999px",...t})});export{f as C};
