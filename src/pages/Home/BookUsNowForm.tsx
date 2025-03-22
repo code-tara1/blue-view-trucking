@@ -14,6 +14,9 @@ import {
   DialogTrigger,
 } from "@trucking/components/ui/dialog";
 import { toaster } from "@trucking/components/ui/toaster";
+import { contactData } from "@trucking/layouts/data";
+import { MAIL_URL } from "@trucking/utils/Constants";
+import axios from "axios";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -42,9 +45,9 @@ const inputForms = [
     type: "select",
     required: true,
     options: [
-      { label: "Service 1", value: "service1" },
-      { label: "Service 2", value: "service2" },
-      { label: "Service 3", value: "service3" },
+      { label: "Service 1", value: "Service 1" },
+      { label: "Service 2", value: "Service 2" },
+      { label: "Service 3", value: "Service 3" },
     ],
   },
   {
@@ -65,20 +68,54 @@ const BookUsNowForm = () => {
   };
 
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const receiverEmail = contactData.find(
+    (item) => item.label === "Email"
+  )?.value;
+
   const contentRef = useRef<HTMLDivElement>(null);
   const { control, handleSubmit, reset } = useForm({
     defaultValues,
   });
 
-  const onSubmit = (data: any) => {
-    console.table(data);
-    toaster.create({
-      title: "Form submitted",
-      description: "Your form has been submitted successfully",
-      type: "success",
-    });
-    reset(defaultValues);
-    setOpen(false);
+  const onSubmit = async (data: typeof defaultValues) => {
+    setLoading(true);
+
+    const { name, email, phone, service, message } = data;
+
+    const formattedData = {
+      to: receiverEmail,
+      subject: "Request for an Appointment",
+      message: {
+        Name: name,
+        Email: email,
+        Phone: phone,
+        Service: service,
+        Message: message,
+      },
+    };
+    try {
+      const response = await axios.post(MAIL_URL, formattedData);
+      if (response.data.status) {
+        toaster.create({
+          title: "Success",
+          description: "Your request has been submitted successfully",
+          type: "success",
+        });
+        reset();
+      }
+    } catch (error) {
+      console.error(error);
+      toaster.create({
+        title: "Error",
+        description: "Something went wrong. Please try again later",
+        type: "error",
+      });
+    } finally {
+      setLoading(false);
+      setOpen(false);
+    }
   };
 
   return (
@@ -150,7 +187,12 @@ const BookUsNowForm = () => {
             <DialogActionTrigger asChild>
               <Button variant={"outline"}>Cancel</Button>
             </DialogActionTrigger>
-            <Button type="submit" form="book-now-form">
+            <Button
+              loading={loading}
+              loadingText="Submitting..."
+              type="submit"
+              form="book-now-form"
+            >
               Submit
             </Button>
           </HStack>

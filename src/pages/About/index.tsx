@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import AboutUs from "../Home/AboutUs";
 
 const About = () => {
-  const { inView, ref } = useInView({ threshold: 0.5, triggerOnce: true });
+  const { inView, ref } = useInView({ triggerOnce: true });
 
   return (
     <Flex flexDir={"column"} minH={"60dvh"}>

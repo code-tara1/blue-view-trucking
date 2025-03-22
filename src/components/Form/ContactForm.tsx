@@ -1,5 +1,8 @@
 import { Card, CardRootProps, GridItem, SimpleGrid } from "@chakra-ui/react";
-import { FC } from "react";
+import { contactData } from "@trucking/layouts/data";
+import { MAIL_URL } from "@trucking/utils/Constants";
+import axios from "axios";
+import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { toaster } from "../ui/toaster";
@@ -47,15 +50,45 @@ const ContactForm: FC<CardRootProps> = ({ ...rest }) => {
     message: "",
   };
   const { control, handleSubmit, reset } = useForm({ defaultValues });
+  const [loading, setLoading] = useState(false);
+  const receiverEmail = contactData.find(
+    (item) => item.label === "Email"
+  )?.value;
+  const onSubmit = async (data: typeof defaultValues) => {
+    setLoading(true);
+    const { name, email, phone, address, message } = data;
 
-  const onSubmit = (data: any) => {
-    console.table(data);
-    toaster.create({
-      title: "Form Submitted",
-      description: "We will get back to you soon.",
-      type: "success",
-    });
-    reset(defaultValues);
+    const formattedData = {
+      to: receiverEmail,
+      subject: "Request for an Appointment",
+      message: {
+        Name: name,
+        Email: email,
+        Phone: phone,
+        Address: address,
+        Message: message,
+      },
+    };
+    try {
+      const response = await axios.post(MAIL_URL, formattedData);
+      if (response.data.status) {
+        toaster.create({
+          title: "Success",
+          description: "Your request has been submitted successfully",
+          type: "success",
+        });
+        reset(defaultValues);
+      }
+    } catch (error) {
+      console.error(error);
+      toaster.create({
+        title: "Error",
+        description: "Something went wrong. Please try again later",
+        type: "error",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -101,7 +134,13 @@ const ContactForm: FC<CardRootProps> = ({ ...rest }) => {
             )}
 
             <GridItem colSpan={2}>
-              <Button type="submit" w={"full"} textTransform={"uppercase"}>
+              <Button
+                loading={loading}
+                loadingText={"Sending..."}
+                type="submit"
+                w={"full"}
+                textTransform={"uppercase"}
+              >
                 Send Now
               </Button>
             </GridItem>

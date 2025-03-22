@@ -29,11 +29,13 @@ const Contact = () => {
         maxW={"1440px"}
         gap={6}
         mx={"auto"}
-        p={10}
+        py={10}
+        px={4}
       >
         <SimpleGrid
           w={"full"}
           maxW={{ base: "95vw", sm: "90vw", lg: "80vw" }}
+          mx={"auto"}
           columns={width < 930 ? 1 : 2}
           gap={4}
           ref={ref}
@@ -46,16 +48,6 @@ const Contact = () => {
             colSpan={1}
           >
             <Stack w={"full"} maxW={"487px"}>
-              <Text
-                color={"primary.500"}
-                borderBottom={"2px solid"}
-                borderBottomColor={"primary.500"}
-                pb={2}
-                textStyle={"caption"}
-                w={"max-content"}
-              >
-                Get In Touch
-              </Text>
               <Text
                 fontSize={{
                   base: "30px",
@@ -137,16 +129,6 @@ const Contact = () => {
             colSpan={1}
           >
             <Stack gap={6} w={"full"} maxW={"100%"}>
-              <Text
-                color={"primary.500"}
-                borderBottom={"2px solid"}
-                borderBottomColor={"primary.500"}
-                pb={2}
-                textStyle={"caption"}
-                w={"max-content"}
-              >
-                Fill out the form
-              </Text>
               <ContactForm maxW={"100%"} />
             </Stack>
           </GridItem>
